@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobil Uyumlu Slider</title>
+<style>
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="slide-container">
+    <div class="slide"><a href="link1"><img src="Photo link1" alt="Kuncu Premium Serisi"></a></div>
+    <div class="slide"><a href="link2"><img src="Photo link2" alt="Kuncu Premium Serisi"></a></div>
+    <div class="slide"><a href="link3"><img src="Photo link3" alt="Kuncu Premium Serisi"></a></div>
+  </div>
+  <button class="prev" onclick="prevSlide()">&#10094;</button>
+  <button class="next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<script>
+const slideContainer = document.querySelector('.slide-container');
+const slides = document.querySelectorAll('.slide');
+const intervalTime = 5000;
+let slideInterval;
+let slideIndex = 0;
+
+const startSlider = () => {
+  slideInterval = setInterval(() => {
+    nextSlide();
+  }, intervalTime);
+}
+
+const nextSlide = () => {
+  slideIndex = (slideIndex + 1) % slides.length;
+  showSlide();
+}
+
+const prevSlide = () => {
+  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+  showSlide();
+}
+
+const showSlide = () => {
+  slideContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+}
+
+startSlider();
+</script>
+
+</body>
+</html>
