@@ -1,0 +1,2 @@
+# shopifyclickableslider
+Shopify Clickable Slider
